@@ -1,7 +1,19 @@
 import { useState } from 'react';
 import { TextField } from '../TextField';
+ type Movie = {
+      title: string;
+      description: string;
+      imgUrl: string;
+      imdbUrl: string;
+      imdbId: string;
+    };
 
-export const NewMovie = () => {
+    type Props = {
+  onAdd: (movie: Movie) => void;
+    };
+    
+   export const NewMovie: React.FC<Props> = ({ onAdd }) => {
+
   // Increase the count after successful form submission
   // to reset touched status of all the `Field`s
   const [count, setCount] = useState(0);
@@ -15,16 +27,16 @@ export const NewMovie = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    /*const newMovie = {
+   
+    const newMovie: Movie ={
       title,
       description,
       imgUrl,
       imdbUrl,
       imdbId,
-    };*/
-
-    /*console.log(newMovie);*/
-
+    };
+onAdd(newMovie);
+   
     setTitle('');
     setDescription('');
     setImgUrl('');
@@ -82,7 +94,6 @@ export const NewMovie = () => {
 
       <div className="field is-grouped">
         <div className="control">
-          
           <button
             type="submit"
             data-cy="submit-button"
