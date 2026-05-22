@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { TextField } from '../TextField';
- type Movie = {
-      title: string;
-      description: string;
-      imgUrl: string;
-      imdbUrl: string;
-      imdbId: string;
-    };
+type Movie = {
+  title: string;
+  description: string;
+  imgUrl: string;
+  imdbUrl: string;
+  imdbId: string;
+};
 
-    type Props = {
+type Props = {
   onAdd: (movie: Movie) => void;
-    };
-    
-   export const NewMovie: React.FC<Props> = ({ onAdd }) => {
+};
 
+export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   // Increase the count after successful form submission
   // to reset touched status of all the `Field`s
   const [count, setCount] = useState(0);
@@ -27,16 +26,16 @@ import { TextField } from '../TextField';
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-   
-    const newMovie: Movie ={
+    const newMovie: Movie = {
       title,
       description,
       imgUrl,
       imdbUrl,
       imdbId,
     };
-onAdd(newMovie);
-   
+
+    onAdd(newMovie);
+
     setTitle('');
     setDescription('');
     setImgUrl('');
@@ -76,6 +75,7 @@ onAdd(newMovie);
         label="Image URL"
         value={imgUrl}
         onChange={setImgUrl}
+        required
       />
 
       <TextField
@@ -83,6 +83,7 @@ onAdd(newMovie);
         label="Imdb URL"
         value={imdbUrl}
         onChange={setImdbUrl}
+        required
       />
 
       <TextField
@@ -90,6 +91,7 @@ onAdd(newMovie);
         label="Imdb ID"
         value={imdbId}
         onChange={setImdbId}
+        required
       />
 
       <div className="field is-grouped">
